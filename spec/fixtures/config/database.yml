@@ -1,0 +1,53 @@
+# This fixture is meant to mock Postgres via Sequel (sequel_pg)
+# see https://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html
+# (retrieved 5/23/21)
+#
+# TODO: consider using ENV values for some elements (username?, password?) to avoid
+# the github ignore problem
+#
+default: &default
+  adapter: 'postgres'
+  # host: 'localhost'
+  # part: '5432'
+  database: 'someapp'
+  max_connections: 10
+  username: <%= Rackal.env('SOMEAPP_DATABASE_USERNAME') %> # 'username'
+  password: <%= Rackal.env('SOMEAPP_DATABASE_PASSWORD') %> # 'password'
+
+development:
+  <<: *default
+  host: 'localhost'
+  database: 'someapp_dev'
+
+test:
+  <<: *default
+  host: 'localhost'
+  database: 'someapp_test'
+
+staging:
+  <<: *default
+  env: 'staging'
+
+production:
+  <<: *default
+  env: 'production'
+
+# default: &default
+#   adapter: sqlite3
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
+
+# development:
+#   <<: *default
+#   database: db/development.sqlite3
+
+# # Warning: The database defined as "test" will be erased and
+# # re-generated from your development database when you run "rake".
+# # Do not set this db to the same as development or production.
+# test:
+#   <<: *default
+#   database: db/test.sqlite3
+
+# production:
+#   <<: *default
+#   database: db/production.sqlite3

@@ -1,0 +1,29 @@
+
+# Ignore OS artifacts
+/.vscode
+/.DS_Store
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore bundler lock
+/Gemfile.lock
+
+# Ignore all logfiles and tempfiles.
+# /log/*
+# /tmp/*
+# !/log/.keep
+# !/tmp/.keep
+
+# Ignore code coverage
+/coverage/*
+
+# Ignore locally archived files
+/**/.archive/**/*
+
+# Ignore linting gem configs
+/.reek.yml
+/**/.rubocop.yml
+
+# Ignore built gem
+/rackal-*.gem
