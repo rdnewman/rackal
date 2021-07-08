@@ -1,6 +1,7 @@
 require 'rackal/internal/application'
 require 'rackal/internal/database_configuration'
 require 'rackal/internal/rack_environment'
+require 'rackal/internal/protection'
 
 module Rackal
   # Retrieves current Rack environment with convenience methods
