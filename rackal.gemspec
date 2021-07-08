@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rackal'.freeze
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.summary     = 'Rackal'.freeze
   s.description = <<~DESCRIPTION
     Rack application helpers
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.6'
   s.rubygems_version = '2.6.1'.freeze
 
-  s.files       = ['lib/rackal.rb'.freeze]
+  s.files       = Dir['lib/**/*.rb'] #  + %w(LICENSE README.md CHANGELOG.md)
   s.require_paths = ['lib'.freeze]
 
   s.add_development_dependency 'rspec', '~> 3'

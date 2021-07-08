@@ -1,11 +1,6 @@
-# class RackalCheck
-#   def self.hi
-#     puts 'hi!'
-#   end
-# end
-
-# p 'here'
-# Dir.glob('./internal/**/*.rb').sort.each { |file| p file; require file }
+require 'rackal/internal/application'
+require 'rackal/internal/database_configuration'
+require 'rackal/internal/rack_environment'
 
 module Rackal
   # Retrieves current Rack environment with convenience methods
@@ -38,6 +33,10 @@ module Rackal
 
   def self.application
     @application ||= Internal::Application.new
+  end
+
+  def self.protect!
+    Internal::Protection.apply
   end
 
   def self.root
