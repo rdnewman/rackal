@@ -1,14 +1,12 @@
-# This fixture is meant to mock Postgres via Sequel (sequel_pg)
+# This fixture is meant to mock a configuration for Postgres
+# via Sequel (sequel_pg)
 # see https://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html
 # (retrieved 5/23/21)
-#
-# TODO: consider using ENV values for some elements (username?, password?) to avoid
-# the github ignore problem
 #
 default: &default
   adapter: 'postgres'
   # host: 'localhost'
-  # part: '5432'
+  # port: '5432'
   database: 'someapp'
   max_connections: 10
   username: <%= Rackal.env('SOMEAPP_DATABASE_USERNAME') %> # 'username'
