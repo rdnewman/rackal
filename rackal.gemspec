@@ -15,8 +15,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.6'
   s.rubygems_version = '2.6.1'.freeze
 
-  s.files       = Dir['lib/**/*.rb'] #  + %w(LICENSE README.md CHANGELOG.md)
+  s.files       = Dir['lib/**/*.rb'.freeze] + ['LICENSE'.freeze, 'README.md'.freeze]
   s.require_paths = ['lib'.freeze]
-
-  s.add_development_dependency 'rspec', '~> 3'
 end

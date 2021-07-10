@@ -5,13 +5,12 @@ module Rackal
     class Application
       include ConfigurationFile
 
-      # TODO: -- drop this?!
-      def self.root
-        new.root
-      end
-
       def initialize
         @config = parse
+      end
+
+      def name
+        @config[:app_main]
       end
 
       # only supports bare class names (not under a namespace)
@@ -47,28 +46,11 @@ module Rackal
         @parse = read_configuration('rackal') { |content| content.fetch('rackal') }
       end
 
-      def name
-        @config[:app_main]
-      end
-
       # only works in linux style OS (assumes path delimiter "/")
       def potential_root_paths
         appname = main_class_rb_filename
 
         caller_locations.lazy.map { |location| assess_location(location, appname) }
-        #   assess_location
-        #   path = location.absolute_path || location.path
-        #   dirname = File.dirname(path)
-
-        #   {
-        #     dirname: dirname,
-        #     configru: File.directory?(dirname) && File.exist?("#{dirname}/config.ru"),
-        #     app: appname && (File.directory?(dirname) && File.exist?("#{dirname}/#{appname}")),
-        #     # configru: File.directory?(path) && File.exist?("#{path}/config.ru"),
-        #     # app: appname && (File.directory?(path) && File.exist?("#{path}/#{appname}")),
-        #     lib: dirname.match?(/.*\/lib\/\z/)
-        #   }
-        # end
       end
 
       def assess_location(location, appname)
@@ -79,8 +61,6 @@ module Rackal
           dirname: dirname,
           configru: File.directory?(dirname) && File.exist?("#{dirname}/config.ru"),
           app: appname && (File.directory?(dirname) && File.exist?("#{dirname}/#{appname}")),
-          # configru: File.directory?(path) && File.exist?("#{path}/config.ru"),
-          # app: appname && (File.directory?(path) && File.exist?("#{path}/#{appname}")),
           lib: dirname.match?(/.*\/lib\/\z/)
         }
       end
@@ -88,7 +68,7 @@ module Rackal
       def main_class_rb_filename
         return nil unless name
 
-        # stolen from Rails ActiveSupport (but simpler)
+        # based on Rails ActiveSupport (but simpler)
         word = name.gsub(/([A-Z\d]+)(?=[A-Z][a-z])|([a-z\d])(?=[A-Z])/) do
           (Regexp.last_match(1) || Regexp.last_match(2)) << '_'
         end

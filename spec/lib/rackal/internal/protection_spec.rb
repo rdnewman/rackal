@@ -17,7 +17,7 @@ RSpec.describe Rackal::Internal::Protection do
     end
 
     if defined?(Refrigerator)
-      # Refrigerator won't be present in this gem, so likely never exercised
+      # Refrigerator won't be directly included in this gem, so likely never exercised
       # TODO: should the gem provide Refrigerator?
       describe 'and Refrigerator available' do
         it 'returns true' do
@@ -25,7 +25,7 @@ RSpec.describe Rackal::Internal::Protection do
         end
       end
     else
-      # Refrigerator won't be present in this gem, so likely never exercised
+      # Refrigerator won't be directly included in this gem, so likely never exercised
       # TODO: should the gem provide Refrigerator?
       describe 'and Refrigerator is not available' do
         it 'returns false' do

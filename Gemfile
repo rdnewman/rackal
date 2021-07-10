@@ -1,14 +1,6 @@
 source 'https://rubygems.org'
 gemspec
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-
-  gem 'awesome_print', require: false
-  gem 'bullet', require: false
-end
-
 group :development do
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
@@ -16,9 +8,11 @@ group :development do
 end
 
 group :test do
-  # gem 'factory_bot_rails'
-  # gem 'faker'
   gem 'rspec'
+
+  # gem 'mutant', require: false
+  # gem 'mutant-rspec', require: false
+  # gem 'mutant-license', source: 'https://x:y@gem.mutant.dev', require: false # source: 'https://${plan}:${key}@gem.mutant.dev'
 
   gem 'simplecov', require: false
 end

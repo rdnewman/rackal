@@ -33,7 +33,7 @@ module Rackal
         !supported?
       end
 
-      # return Array list environments treated as protected (e.g., :production)
+      # @return Array list environments treated as protected (e.g., :production)
       def protected
         @protected ||= self.class.supported -
                        (@protect_test ? [:development] : [:development, :test])
