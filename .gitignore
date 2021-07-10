@@ -18,6 +18,10 @@
 # Ignore code coverage
 /coverage/*
 
+# Ignore yard documentation
+/.yardoc
+/doc
+
 # Ignore locally archived files
 /**/.archive/**/*
 
