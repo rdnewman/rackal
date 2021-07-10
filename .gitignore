@@ -16,11 +16,11 @@
 # !/tmp/.keep
 
 # Ignore code coverage
-/coverage/*
+/coverage/**/*
 
 # Ignore yard documentation
-/.yardoc
-/doc
+/.yardoc/**/*
+/doc/**/*
 
 # Ignore locally archived files
 /**/.archive/**/*
