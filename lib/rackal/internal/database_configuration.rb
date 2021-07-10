@@ -13,6 +13,7 @@ module Rackal
         end
       end
 
+      # @api private
       def initialize
         @parameters = parse
       end

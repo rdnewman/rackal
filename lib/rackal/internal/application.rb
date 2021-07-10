@@ -5,6 +5,7 @@ module Rackal
     class Application
       include ConfigurationFile
 
+      # @api private
       def initialize
         @config = parse
       end
@@ -13,16 +14,17 @@ module Rackal
         @config[:app_main]
       end
 
-      # only supports bare class names (not under a namespace)
       def main_class
+        # only supports bare class names (not under a namespace)
         raise NameError unless name
 
         @main_class ||= Object.const_get(name)
       end
 
-      # lightly inspired by Rails implementation in
-      # railties/lib/rails/engine.rb#find_root_with_flag
       def root
+        # lightly inspired by Rails implementation in
+        # railties/lib/rails/engine.rb#find_root_with_flag
+
         return @root if defined?(@root) && @root
 
         paths = potential_root_paths
@@ -46,8 +48,9 @@ module Rackal
         @parse = read_configuration('rackal') { |content| content.fetch('rackal') }
       end
 
-      # only works in linux style OS (assumes path delimiter "/")
       def potential_root_paths
+        # only works in linux style OS (assumes path delimiter "/")
+
         appname = main_class_rb_filename
 
         caller_locations.lazy.map { |location| assess_location(location, appname) }
