@@ -1,5 +1,7 @@
 # Rackal
 
+[![Gem Version](https://badge.fury.io/rb/rackal.svg)](https://badge.fury.io/rb/rackal)
+
 The `rackal` gem provides convenience helpers when configuring Rack applications.
 
 The main intent is abstract away some common boilerplate and reduce hardcoded details in
@@ -43,6 +45,8 @@ run(Rackal.application.main_class.freeze.app) # main_class is the driving class 
 
 Rackal.protect!  # applies Refrigerator if gem is present in production settings
 ```
+
+An demonstration application using Rackal will be provided in a later version.
 
 ## Main interface
 Available as namespaced methods:
