@@ -64,6 +64,21 @@ If `ENV["RACK_ENV"]` is `nil` for whatever reason, Rackal will assume a developm
 Two configuration files, written in YAML, will be assumed to be under `/config` directory for
 the application: `database.yml` and `rackal.yml`
 
+### Twelve-factor app
+If adhering to the [twelve-factor app](https://12factor.net/config) standard, recall that
+deploy-level configuration should not included in code, but application configuration can
+be.
+
+Rackal does not interfere with use of tools like [dotenv](https://github.com/bkeepers/dotenv)
+or [figaro](https://github.com/laserlemon/figaro) to support deploy-level environment variable.
+Merely add that to the application startup (e.g., `config.ru`) in the usual way before
+calling any Rackal methods.
+
+Since the YAML files used for Rackal's configuration support ERB, those files can then
+follow the environment variables supplied dynamically when wanted, while leaving
+application-level directly supplied.  The `database.yml` example below shows such a use
+for credentials.
+
 ### `database.yml`
 
 The `database.yml` file is just to collect, by runtime environment, the parameters for
@@ -94,11 +109,9 @@ test:
 
 staging:
   <<: *default
-  env: 'staging'
 
 production:
   <<: *default
-  env: 'production'
 ```
 
 For the given runtime environment, the configured parameters are available in code via
@@ -151,11 +164,21 @@ generalization for non-Roda Rack applications, and performance improvements.
 
 ## Acknowledgements
 Jeremy Evans's `roda-sequel-stack` [repository](https://github.com/jeremyevans/roda-sequel-stack)
-was used as the original reference for boilerplate (though the "up"/"down" mechanics for
-database migrations is not considered in Rackal).
+was used as an original reference for boilerplate (though the "up"/"down" mechanics for
+database migrations are not considered in Rackal).
 
-Some application metadata concepts were inspired by Rails, though with a much lighter
-(and so less robust) approach taken in Rackal.
+Some application metadata concepts were inspired by Rails (for instance, `Rackal.root`),
+though with a much lighter (and so less robust) approach taken in Rackal.
+
+## Limitations
+* Rackal (primarily `Rackal.root`) assumes use in a Linux style OS and so use of `/` as a
+path delimiter.
+* Right now, `Rackal.database_parameters` has only been tested with Sequel ORM for database
+connections, though the use of YAML to produce the Hash should be universally capable.
+* (As stated in the introduction to this notes,) Rackal has not been tested with a bare
+Rack application or with a Sinatra application.
+
+Please [report issues or bugs](https://github.com/rdnewman/rackal/issues).
 
 ## License
 Rackal is released under the [MIT License](https://opensource.org/licenses/MIT).
