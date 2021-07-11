@@ -171,7 +171,7 @@ Some application metadata concepts were inspired by Rails (for instance, `Rackal
 though with a much lighter (and so less robust) approach taken in Rackal.
 
 ## Limitations
-* Rackal (primarily `Rackal.root`) assumes use in a Linux style OS and so use of `/` as a
+* Rackal (primarily `Rackal.root`) assumes use in a Linux style OS and so assumes `/` as the
 path delimiter.
 * Right now, `Rackal.database_parameters` has only been tested with Sequel ORM for database
 connections, though the use of YAML to produce the Hash should be universally capable.
